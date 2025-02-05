@@ -11,15 +11,15 @@ from PySide2.QtWidgets import (
 
 
 class LabeledInputComponent(QFrame):
-    def __init__(self, text, parent, min_lenght: int | None = None):
+    def __init__(self, text, parent, min_length: int | None = None):
         super().__init__(parent)
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(2)
         label = QLabel(text=text, parent=self)
         self.line_edit = QLineEdit(self)
-        if min_lenght:
-            self.line_edit.setMinimumWidth(min_lenght)
+        if min_length:
+            self.line_edit.setMinimumWidth(min_length)
         layout.addWidget(label)
         layout.addWidget(self.line_edit)
 
@@ -36,14 +36,14 @@ class LabeledInputComponent(QFrame):
 
 
 class LabeledComboBoxComponent(QFrame):
-    def __init__(self, text, parent, min_lenght: int | None = None):
+    def __init__(self, text, parent, min_length: int | None = None):
         super().__init__(parent)
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         label = QLabel(text=text, parent=self)
         self.combobox = QComboBox(self)
-        if min_lenght:
-            self.combobox.setMinimumWidth(min_lenght)
+        if min_length:
+            self.combobox.setMinimumWidth(min_length)
         layout.addWidget(label)
         layout.addWidget(self.combobox)
 

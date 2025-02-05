@@ -81,13 +81,13 @@ class ApplicationTabContainer(QWidget):
             for reason, reason_description in REASON_DESCRIPTION_ACCUSATIVE_LONG_MAPPER.items()
             if reason in Reason.multiple_disability_reasons() and reason != primary_reason
         }
-        if primary_reason in Reason.intelectual_reasons():
+        if primary_reason in Reason.intellectual_reasons():
             # we need to exclude other intelectual reason if one was already selected.
-            reason_to_exclude = Reason.intelectual_reasons()
-        elif primary_reason in Reason.sight_deficites_reasons():
-            reason_to_exclude = Reason.sight_deficites_reasons()
-        elif primary_reason in Reason.hearing_deficites_reasons():
-            reason_to_exclude = Reason.hearing_deficites_reasons()
+            reason_to_exclude = Reason.intellectual_reasons()
+        elif primary_reason in Reason.sight_deficit_reasons():
+            reason_to_exclude = Reason.sight_deficit_reasons()
+        elif primary_reason in Reason.hearing_deficit_reasons():
+            reason_to_exclude = Reason.hearing_deficit_reasons()
         else:
             reason_to_exclude = []
 

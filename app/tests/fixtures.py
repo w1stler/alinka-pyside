@@ -51,7 +51,7 @@ meeting_data = {
 
 support_center_data = {
     "name_nominative": "Poradnia Psychologiczno - Pedagogiczna w Poznaniu",
-    "name_genetive": "Poradni Psychologiczno - Pedagogicznej w Poznaniu",
+    "name_genitive": "Poradni Psychologiczno - Pedagogicznej w Poznaniu",
     "institute_name": "Zespół Orzekający przy Poradni Psychologiczno-Pedagogicznej w Poznaniu",
     "town": "Poznań",
     "postal_code": "12-345",

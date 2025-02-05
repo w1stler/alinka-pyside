@@ -34,11 +34,11 @@ class ChildData(PersonalData):
     student: bool
     birth_date: date | None = None
     profession: str | None = None
-    student_description_genetive: str | None = Field(None, examples=["ucznia", "dziecka"])
+    student_description_genitive: str | None = Field(None, examples=["ucznia", "dziecka"])
 
     @model_validator(mode="after")
-    def calculate_student_description_genetive(self) -> "ChildData":
-        self.student_description_genetive = "ucznia" if self.student else "dziecka"
+    def calculate_student_description_genitive(self) -> "ChildData":
+        self.student_description_genitive = "ucznia" if self.student else "dziecka"
         return self
 
     @model_validator(mode="after")
@@ -78,7 +78,7 @@ class SupportCenterData(AddressData):
     province_id: int | None = None
     rspo: int | None = None
     name_nominative: str = Field(..., examples=["Poradnia Psychologiczno - Pedagogiczna w Poznaniu"])
-    name_genetive: str = Field(..., examples=["Poradni Psychologiczno - Pedagogicznej w Poznaniu"])
+    name_genitive: str = Field(..., examples=["Poradni Psychologiczno - Pedagogicznej w Poznaniu"])
     institute_name: str = Field(
         ..., examples=["Zespół Orzekający przy Poradni Psychologiczno-Pedagogicznej w Poznaniu"]
     )
@@ -104,11 +104,11 @@ class DocumentData(BaseModel):
     # calculated
     reason: Reason | None = Field(None, examples=[Reason.AUTYZM])
     multiple_disability_nominative: str | None = None
-    multiple_disability_genetive: str | None = None
+    multiple_disability_genitive: str | None = None
     multiple_disability_accusative: str | None = None
     issue_short: str | None = Field(None, examples=["ind_rocz"])
     reason_description_nominative_long: str | None = Field(None, examples=["niepełnosprawność sprzężona"])
-    reason_description_genetive_long: str | None = Field(None, examples=["ie niepełnosprawności sprzężonej"])
+    reason_description_genitive_long: str | None = Field(None, examples=["ie niepełnosprawności sprzężonej"])
     reason_description_accusative_long: str | None = Field(None, examples=["ie niepełnosprawność sprzężoną"])
     on_request: str | None = None
     parent_descriptions: str | None = None
@@ -129,7 +129,7 @@ class DocumentData(BaseModel):
         """Check excluded together disabilities was selected"""
         if Reason.UNIEMOZLIWIAJACY in self.reasons and Reason.ZNACZNIE_UTRUDNIAJACY in self.reasons:
             raise ValueError(f"Reasons: {', '.join(self.reasons)} can't be issued together.")
-        if intelecual_reasons := [reason for reason in self.reasons if reason in Reason.intelectual_reasons()]:
+        if intelecual_reasons := [reason for reason in self.reasons if reason in Reason.intellectual_reasons()]:
             if len(intelecual_reasons) > 1:
                 raise ValueError(f"Two intelecutal reasons: {', '.join(intelecual_reasons)} can't be issued together.")
         if Reason.GLEBOKIE in self.reasons and len(self.reasons) > 1:
@@ -156,7 +156,7 @@ class DocumentData(BaseModel):
         if self.reason == Reason.SPRZEZONA:
             for key, source in [
                 ("multiple_disability_nominative", "reason_description_nominative_long"),
-                ("multiple_disability_genetive", "reason_description_genetive_long"),
+                ("multiple_disability_genitive", "reason_description_genitive_long"),
                 ("multiple_disability_accusative", "reason_description_accusative_long"),
             ]:
                 setattr(self, key, ", ".join([getattr(reason, source) for reason in self.reasons]))
@@ -165,11 +165,11 @@ class DocumentData(BaseModel):
     @model_validator(mode="after")
     def calculate_reason_description_long(self) -> "DocumentData":
         self.reason_description_nominative_long = self.reason.reason_description_nominative_long
-        self.reason_description_genetive_long = self.reason.reason_description_genetive_long
+        self.reason_description_genitive_long = self.reason.reason_description_genitive_long
         self.reason_description_accusative_long = self.reason.reason_description_accusative_long
         if self.reason == Reason.SPRZEZONA:
             self.reason_description_nominative_long += f": {self.multiple_disability_nominative}"
-            self.reason_description_genetive_long += f": {self.multiple_disability_genetive}"
+            self.reason_description_genitive_long += f": {self.multiple_disability_genitive}"
             self.reason_description_accusative_long += f": {self.multiple_disability_accusative}"
         return self
 
