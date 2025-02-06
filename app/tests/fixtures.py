@@ -115,7 +115,7 @@ decision_data = {
     "second_parent_postal_code": "30-602",
     "second_parent_post": "Ziemsko",
     "support_center_name_nominative": "Miejska Poradnia Psychologiczno - Pedagogiczna w Wejherowo",
-    "support_center_name_genetive": "Powiatowej Poradni Psychologiczno - Pedagogicznej w Ząbki",
+    "support_center_name_genitive": "Powiatowej Poradni Psychologiczno - Pedagogicznej w Ząbki",
     "support_center_institute_name": "Zespół Orzekający przy Powiatowej Poradni Psychologiczno - Pedagogicznej w Ząbki",
     "support_center_kurator": "Gdańsku, plac Wiśniowa 65/54, 66-804 Bielsko-Biała",
     "support_center_address": "pl. Słoneczna 620",
